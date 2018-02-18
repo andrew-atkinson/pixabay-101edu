@@ -1,10 +1,6 @@
 # expo
 .expo/
 
-#builds
-android
-ios
-
 # dependencies
 /node_modules
 
