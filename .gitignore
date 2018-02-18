@@ -15,7 +15,7 @@ ios
 .env.production.local
 .vscode
 .DS_Store
-api-key
+apikey.js
 
 npm-debug.log*
 yarn-debug.log*
