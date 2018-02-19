@@ -6,17 +6,13 @@ const SET_SEARCH = 'SET_SEARCH'
 
 export const setSearch = data => ({type: SET_SEARCH, data})
 
-
 /* ------------       REDUCER     ------------------ */
 
-export default function reducer(state = [], action) {
+export default function reducer(currentSearch = {}, action) {
   switch (action.type) {
     case SET_SEARCH:
-      return {
-        ...state,
-        currentSearch: action.data
-      }
+      return action.data
     default:
-      return state
+      return currentSearch
   }
 }
