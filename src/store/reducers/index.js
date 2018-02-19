@@ -1,8 +1,10 @@
-import getImageQueryReducer from './getImageQuery'
+import query from './getImageQuery'
+import currentSearch from './currentSearch' 
 import {combineReducers} from 'redux'
 
 const rootReducer = combineReducers({
-  query: getImageQueryReducer
+  query,
+  currentSearch
 })
 
 export default rootReducer
