@@ -5,19 +5,23 @@ import {connect} from 'react-redux'
 import {setSearch} from '../store/reducers/currentSearch'
 import {getImageQueryResults} from '../store/reducers/getImageQuery'
 
-
 class SearchScreen extends Component {
   constructor(props) {
     super(props)
   }
 
   onSubmitSearch = () => {
-    console.log("here it is...", this.props.currentSearch)
     this.props.onQuerySubmit(this.props.currentSearch)
+    this.props.navigator.push({
+      screen: "pixabay.ResultsScreen",
+      title: this.props.currentSearch,
+      passProps: {
+        query: this.props.query
+      }
+    })
   }
 
   onChangeTextHandler = currentSearch => {
-    console.log(this.state)
     this.props.onTextChange(currentSearch)
   }
 
@@ -42,17 +46,20 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => {
-  console.log('state', state)
   return {
-    currentSearch: state.currentSearch,
+    currentSearch: state.currentSearch, 
     query: state.query
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onTextChange: text => {dispatch(setSearch(text))},
-    onQuerySubmit: text => {dispatch(getImageQueryResults(text))}
+    onTextChange: text => {
+      dispatch(setSearch(text))
+    },
+    onQuerySubmit: text => {
+      dispatch(getImageQueryResults(text))
+    }
   }
 }
 
