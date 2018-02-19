@@ -23,17 +23,37 @@ class ResultsScreen extends Component {
     this.props.onTextChange(currentSearch)
   }
 
+  onImagePress = id => {
+    this.props.navigator.push({
+      screen: "pixabay.ImageDetailScreen",
+      title: "Image Detail",
+      passProps: {
+        currentImage: this.props.query.hits.filter(hit => hit.id === id)
+      }
+    })
+  }
+
   render() {
     return (
       <View>
+        <Text>Number of Hits: {this.props.query.total}</Text>
       <FlatList
         style={{width: '100%'}}
         data={this.props.query.hits}
+        keyExtractor={(item, index) => index}
+        /* onEndReached={}
+        onEndReachedThreshold={} */
         renderItem={(info) => (
           <View>
-            <TouchableOpacity>
-              <Text>{info.item.id}</Text>
+            <TouchableOpacity onPress={() => this.onImagePress(info.item.id)}>
               <Image style={{width: 50, height: 50}} source={{uri:info.item.previewURL}}/>
+              <View>
+              <Text>Views: {info.item.views}</Text>
+              <Text>Downloads: {info.item.views}</Text>
+              <Text>Favorites: {info.item.favorites}</Text>
+              <Text>Likes: {info.item.likes}</Text>
+              </View>
+              <Text>{info.item.user}</Text>
             </TouchableOpacity>
           </View>
         )}
