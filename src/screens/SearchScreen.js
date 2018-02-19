@@ -3,6 +3,8 @@ import {View, Text, TextInput, Button, StyleSheet} from 'react-native'
 import {connect} from 'react-redux'
 
 import {setSearch} from '../store/reducers/currentSearch'
+import {getImageQueryResults} from '../store/reducers/getImageQuery'
+
 
 class SearchScreen extends Component {
   constructor(props) {
@@ -10,11 +12,12 @@ class SearchScreen extends Component {
   }
 
   onSubmitSearch = () => {
-    console.warn("here it is...")
+    console.log("here it is...", this.props.currentSearch)
+    this.props.onQuerySubmit(this.props.currentSearch)
   }
 
   onChangeTextHandler = currentSearch => {
-    console.log('currentSearch', currentSearch)
+    console.log(this.state)
     this.props.onTextChange(currentSearch)
   }
 
@@ -38,12 +41,19 @@ const styles = StyleSheet.create({
   }
 })
 
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
+  console.log('state', state)
   return {
-    onTextChange: text => {
-      dispatch(setSearch(text))
-    }
+    currentSearch: state.currentSearch,
+    query: state.query
   }
 }
 
-export default connect(null, mapDispatchToProps)(SearchScreen)
+const mapDispatchToProps = dispatch => {
+  return {
+    onTextChange: text => {dispatch(setSearch(text))},
+    onQuerySubmit: text => {dispatch(getImageQueryResults(text))}
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchScreen)
