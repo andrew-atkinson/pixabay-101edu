@@ -7,9 +7,6 @@ import {setSearch} from '../store/reducers/currentSearch'
 class SearchScreen extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      currentSearch: ''
-    }
   }
 
   onSubmitSearch = () => {
@@ -17,6 +14,7 @@ class SearchScreen extends Component {
   }
 
   onChangeTextHandler = currentSearch => {
+    console.log('currentSearch', currentSearch)
     this.props.onTextChange(currentSearch)
   }
 
