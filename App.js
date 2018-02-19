@@ -7,10 +7,12 @@ const store = configureStore();
 import {Navigation} from 'react-native-navigation'
 import SearchScreen from './src/screens/SearchScreen'
 import ResultsScreen from './src/screens/ResultsScreen'
+import ImageDetailScreen from './src/screens/ImageDetailScreen'
 
 //register screens
 Navigation.registerComponent("pixabay.SearchScreen", () => SearchScreen, store, Provider)
 Navigation.registerComponent("pixabay.ResultsScreen", () => ResultsScreen, store, Provider)
+Navigation.registerComponent("pixabay.ImageDetailScreen", () => ImageDetailScreen)
 
 //start app
 Navigation.startSingleScreenApp({
