@@ -22,8 +22,8 @@ export default function reducer(state = [], action) {
 
 /* ------------   THUNK CREATORS     ------------------ */
 
-export const getImageQueryResults = query => dispatch => {
-  axios.get(`https://pixabay.com/api/?key=${KEY}&q=${encodeURI(query)}&webformatURL='_960`)
+export const getImageQueryResults = (query, page = 1) => dispatch => {
+  axios.get(`https://pixabay.com/api/?key=${KEY}&q=${encodeURI(query)}&webformatURL='_960'&per_page=200&page=${page}`)
        .then(res => {
          dispatch(get(res.data))
        })
