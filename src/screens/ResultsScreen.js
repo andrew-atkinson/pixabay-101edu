@@ -11,7 +11,6 @@ import {
 } from 'react-native'
 import {connect} from 'react-redux'
 
-import {setSearch} from '../store/reducers/currentSearch'
 import {getImageQueryResults} from '../store/reducers/getImageQuery'
 
 class ResultsScreen extends Component {
@@ -41,8 +40,8 @@ class ResultsScreen extends Component {
         style={{width: '100%'}}
         data={this.props.query.hits}
         keyExtractor={(item, index) => index}
-        /* onEndReached={}
-        onEndReachedThreshold={} */
+        onEndReached={() => this.props.onLoadMoreResults(this.props.currentSearch, ++this.props.query.page)}
+        onEndReachedThreshold={0.9}
         renderItem={(info) => (
           <View>
             <TouchableOpacity onPress={() => this.onImagePress(info.item.id)}>
@@ -53,7 +52,7 @@ class ResultsScreen extends Component {
               <Text>Favorites: {info.item.favorites}</Text>
               <Text>Likes: {info.item.likes}</Text>
               </View>
-              <Text>{info.item.user}</Text>
+              <Text>User: {info.item.user}</Text>
             </TouchableOpacity>
           </View>
         )}
@@ -76,7 +75,11 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-  return {}
+  return {
+    onLoadMoreResults: (text, page) => {
+      dispatch(getImageQueryResults({text, page}))
+    }
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ResultsScreen)
