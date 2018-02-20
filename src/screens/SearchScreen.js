@@ -11,7 +11,7 @@ class SearchScreen extends Component {
   }
 
   onSubmitSearch = () => {
-    this.props.onQuerySubmit(this.props.currentSearch)
+    this.props.onQuerySubmit(this.props.currentSearch, this.props.query.page++)
     this.props.navigator.push({
       screen: "pixabay.ResultsScreen",
       title: this.props.currentSearch,
@@ -57,8 +57,8 @@ const mapDispatchToProps = dispatch => {
     onTextChange: text => {
       dispatch(setSearch(text))
     },
-    onQuerySubmit: text => {
-      dispatch(getImageQueryResults(text))
+    onQuerySubmit: (text, page) => {
+      dispatch(getImageQueryResults({text, page}))
     }
   }
 }
