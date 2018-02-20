@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/pixabay.iml" filepath="$PROJECT_DIR$/pixabay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-navigation/android/app/react-native-navigation.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-navigation/android/app/react-native-navigation.iml" />
     </modules>
   </component>
 </project>
