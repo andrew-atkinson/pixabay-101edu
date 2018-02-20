@@ -11,6 +11,7 @@ class SearchScreen extends Component {
   }
 
   onSubmitSearch = () => {
+    if (this.props.currentSearch.trim() === '') return;
     this.props.onQuerySubmit(this.props.currentSearch, this.props.query.page++)
     this.props.navigator.push({
       screen: "pixabay.ResultsScreen",

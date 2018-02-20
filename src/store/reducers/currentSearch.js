@@ -8,7 +8,7 @@ export const setSearch = data => ({type: SET_SEARCH, data})
 
 /* ------------       REDUCER     ------------------ */
 
-export default function reducer(currentSearch = {}, action) {
+export default function reducer(currentSearch = '', action) {
   switch (action.type) {
     case SET_SEARCH:
       return action.data
