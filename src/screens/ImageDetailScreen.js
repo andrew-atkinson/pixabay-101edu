@@ -3,7 +3,6 @@ import {View, Text, Image} from 'react-native'
 
 export default ImageDetailScreen = props => {
   const [currentImage] = props.currentImage
-  console.log('currentImage', currentImage)
   return (
     <View>
       <Image resizeMode='contain' 
