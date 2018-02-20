@@ -27,26 +27,29 @@ class ResultsScreen extends Component {
   }
 
   render() {
+    const nextPage = this.props.query.page + 1
     return (
-      <View>
+      <View style={styles.container}>
         <Text>Number of Hits: {this.props.query.total}</Text>
       <FlatList
         style={{width: '100%'}}
         data={this.props.query.hits}
         keyExtractor={(item, index) => index}
-        onEndReached={() => this.props.onLoadMoreResults(this.props.currentSearch, ++this.props.query.page)}
+        onEndReached={() => this.props.onLoadMoreResults(this.props.currentSearch, nextPage)}
         onEndReachedThreshold={0.9}
         renderItem={(info) => (
           <View>
-            <TouchableOpacity onPress={() => this.onImagePress(info.item.id)}>
-              <Image style={{width: 50, height: 50}} source={{uri:info.item.previewURL}}/>
-              <View>
-              <Text>Views: {info.item.views}</Text>
-              <Text>Downloads: {info.item.views}</Text>
-              <Text>Favorites: {info.item.favorites}</Text>
-              <Text>Likes: {info.item.likes}</Text>
+            <TouchableOpacity style={styles.listItem} onPress={() => this.onImagePress(info.item.id)}>
+              <View style={styles.imageItemContainer}>
+                <Image resizeMode="contain" style={styles.imageItem} source={{uri:info.item.previewURL}}/>
               </View>
-              <Text>User: {info.item.user}</Text>
+              <View style={styles.listItemInfoContainer}>
+                <Text>Views: {info.item.views}</Text>
+                <Text>Downloads: {info.item.views}</Text>
+                <Text>Favorites: {info.item.favorites}</Text>
+                <Text>Likes: {info.item.likes}</Text>
+                <Text>User: {info.item.user}</Text>
+              </View>
             </TouchableOpacity>
           </View>
         )}
@@ -60,7 +63,29 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: 22,
     backgroundColor: "white",
-    flex: 1
+    flex: 1,
+    margin:10
+  },
+  listItem:{
+    flexDirection: "row",
+    marginBottom: 5
+  },
+  imageItem:{
+    width: 75,
+    height: 50,
+    padding: 10
+  },
+  imageItemContainer:{
+    flex:1,
+    backgroundColor:"#eee",
+    padding: 10,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  listItemInfoContainer: {
+    flex:2,
+    backgroundColor:"#ddd",
+    padding: 10
   }
 })
 

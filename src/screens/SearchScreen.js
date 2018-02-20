@@ -28,10 +28,11 @@ class SearchScreen extends Component {
 
   render() {
     return (
-      <View style={[styles.container]}>
+      <View style={styles.container}>
         <TextInput
           placeholder="Search for images"
-          onChangeText={this.onChangeTextHandler}/>
+          onChangeText={this.onChangeTextHandler}
+          style={styles.textInput}/>
         <Button onPress={this.onSubmitSearch} title="Search" color="goldenrod"/>
       </View>
     )
@@ -42,7 +43,12 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: 22,
     backgroundColor: "white",
-    flex: 1
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  textInput: {
+    width:"80%"
   }
 })
 
