@@ -11,15 +11,11 @@ import {
 } from 'react-native'
 import {connect} from 'react-redux'
 
-import {getImageQueryResults} from '../store/reducers/getImageQuery'
+import {getMoreImageQueryResults} from '../store/reducers/getImageQuery'
 
 class ResultsScreen extends Component {
   constructor(props) {
     super(props)
-  }
-
-  onChangeTextHandler = currentSearch => {
-    this.props.onTextChange(currentSearch)
   }
 
   onImagePress = id => {
@@ -77,7 +73,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onLoadMoreResults: (text, page) => {
-      dispatch(getImageQueryResults({text, page}))
+      dispatch(getMoreImageQueryResults({text, page}))
     }
   }
 }
