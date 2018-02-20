@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {View, Text, TextInput, Button, StyleSheet} from 'react-native'
+import {View, TextInput, Button, StyleSheet} from 'react-native'
 import {connect} from 'react-redux'
 
 import {setSearch} from '../store/reducers/currentSearch'
