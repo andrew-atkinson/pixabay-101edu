@@ -16,7 +16,7 @@ export default function reducer(query = {hits: [], page: 1}, action) {
     case GET_IMAGES:
       return {
         total: action.query.total,
-        hits: query.hits.concat(action.query.hits) || action.query.hits,
+        hits: query.hits.concat(action.query.hits),
         page: action.query.page
       }
     default:
